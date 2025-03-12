@@ -20,7 +20,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
             return;
         }
 
-        console.log(accessToken, refreshToken, user._id);
+        // console.log(accessToken, refreshToken, user._id);
 
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false });
@@ -79,7 +79,7 @@ const login = async (req, res) => {
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(checkUser._id);
     const loggedInUser = await User.findById(checkUser._id).select("-password");
 
-    console.log(accessToken, refreshToken, loggedInUser);
+    // console.log(accessToken, refreshToken, loggedInUser);
 
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
